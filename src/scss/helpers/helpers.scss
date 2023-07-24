@@ -1,0 +1,58 @@
+    $color-primary:#ff385c;
+    $color-dark:#222222;
+    $color-grey:#717171;
+    $color-grey2:#ececec4d;
+    $color-grey3:#727272;
+    $color-white:#ffff;
+    $color-light:#fdfafd;
+    $color-dark2:#3d3d3d;
+    $color-shadow-dark:rgba(0,0,0,0.46);
+    $color-shadow-light:#ffffff5d;
+
+    body{
+        --color-primary:#{$color-primary};
+        --color-secondary:#{$color-grey2};
+        --color-grey:#{$color-grey};
+        --color-background-primary:#{$color-white};
+        --color-text:#{$color-dark};
+        --color-text-box:#{$color-dark2};
+        --color-text-secondary:#{$color-dark2};
+        --color-bg-box:#{$color-light};
+        --color-hover-1:#{$color-grey3};
+        --color-shadow:#{$color-shadow-dark};
+
+    }
+
+    body.dark-theme{
+        --color-primary:#{$color-light};
+        --color-secondary:#{$color-dark};
+        --color-grey:#{$color-grey};
+        --color-background-primary:#{$color-dark};
+        --color-text:#{$color-light};
+        --color-text-box:#{$color-dark2};
+        --color-text-secondary:#{$color-light};
+        --color-bg-box:#{$color-grey2};
+        --color-hover-1:#{$color-grey3};
+        --color-shadow:#{$color-shadow-light};
+    }
+
+    $fontWeight: ("lighter":100, "light":300, "normal":400, "semibold":500, "bold":700, "bolder":800);
+
+    @each $key,$value in $fontWeight {
+        .fw-#{$key}{
+            font-weight: $value;
+        }
+    }
+
+    $fw-lighter:100;
+    $fw-light:300;
+    $fw-normal:400;
+    $fw-semibold:500;
+    $fw-bold:700;
+    $fw-bolder:800;
+
+    .mainHover{
+        &:hover{
+            color:var(--color-primary);
+        }
+    }

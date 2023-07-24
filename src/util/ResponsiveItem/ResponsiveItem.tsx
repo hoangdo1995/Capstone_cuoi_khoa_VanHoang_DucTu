@@ -1,23 +1,45 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 
 type Props = {
-    component:React.FC,
-    mobileComponent:React.FC
+    component:JSX.Element,
+    mobileComponent:JSX.Element
 };
 
-type screen = {
+type Screen = {
     width:number,
     height:number
 }
 
 const ResponsiveItem = (props: Props) => {
-
+    let componentRender = props.component;
     let [screen,setScreen] = useState({
         width:window.innerWidth,
         height:window.innerHeight
     });
-    console.log(screen);
-  return <div></div>;
+    const getScreen = ()=>{
+        const screen:Screen = {
+            width: window.innerWidth,
+            height:window.innerHeight
+        }
+        setScreen(screen);
+    }
+    useEffect(()=>{
+        window.addEventListener('load',getScreen);
+        window.addEventListener('resize',getScreen);
+        return ()=>{
+            window.removeEventListener('load',getScreen);
+            window.removeEventListener('resize',getScreen);
+        }   
+    },[screen]);
+
+    if(screen.width < 768){
+        componentRender =  props.mobileComponent
+    }
+
+    return <>
+        {componentRender}
+    </>
+
 };
 
 export default ResponsiveItem;

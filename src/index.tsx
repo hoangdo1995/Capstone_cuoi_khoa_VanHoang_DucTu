@@ -7,6 +7,12 @@ import {unstable_HistoryRouter as HistoryRouter} from 'react-router-dom'
 import {createBrowserHistory, BrowserHistory} from 'history'
 import {Provider} from 'react-redux'
 import { store } from './redux/store';
+import ResponsiveItem from './util/ResponsiveItem/ResponsiveItem';
+import HomePage from './pages/HomePage/HomePage';
+import HompageMobile from './pages/HomePage/HompageMobile';
+import HomeTemplate from './templates/HomeTemplate/HomeTemplate';
+import './scss/style.scss'
+
 export const history:BrowserHistory|any = createBrowserHistory();
 
 const root = ReactDOM.createRoot(
@@ -16,13 +22,10 @@ root.render(
   <React.StrictMode>
       <HistoryRouter history={history}>
           <Provider store={store}>
-
+              <HomeTemplate />
           </Provider>
       </HistoryRouter>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

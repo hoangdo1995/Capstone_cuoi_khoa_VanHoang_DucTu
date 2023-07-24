@@ -1,0 +1,46 @@
+.container{
+    .footer-product{
+        padding: 30px 50px;
+        border-bottom: 1px solid var(--color-grey);
+        div{
+            padding: 0 15px;
+            min-width: none;
+            p{
+                font-weight: $fw-bold;
+                color:var(--color-text);
+            }
+            a{
+                font-weight: $fw-normal;
+                margin: 5px 0px;
+                @extend .mainHover;
+            }
+        }
+    }
+    .footer-contact{
+        padding: 10px 50px;
+        div:first-of-type{
+            a{
+                margin-right:10px;
+                @extend .mainHover;
+                li{
+                    &::marker{
+                        color: rgb(59, 59, 59);
+                    }
+                }
+            }
+        }
+        div:last-of-type{
+            
+            a{
+                margin-left: 30px;
+                color:app{
+                    color:var(--color-primary)
+                }
+                @extend .mainHover;
+            }
+        }
+
+    }
+
+    
+}
