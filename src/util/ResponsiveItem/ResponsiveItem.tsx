@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 
 type Props = {
     component:JSX.Element,
-    mobileComponent:JSX.Element
+    mobileComponent?:JSX.Element
 };
 
 type Screen = {

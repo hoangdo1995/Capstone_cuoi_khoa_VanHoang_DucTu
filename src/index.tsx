@@ -16,6 +16,7 @@ import PositionSelect from './components/PositionSelect/PositionSelect';
 import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 import AdminManagerPage from './adminPages/AdminManagerPage/AdminManagerPage';
 import RoomManagerPage from './adminPages/RoomManagerPage/RoomManagerPage';
+import ListRoomPage from './pages/ListRoomPage/ListRoomPage';
 
 export const history:BrowserHistory|any = createBrowserHistory();
 
@@ -28,7 +29,9 @@ root.render(
         <HistoryRouter history={history}>
             <Routes>
               <Route path='' element={<HomeTemplate/>}>
-                  <Route index element={<HomePage/>}/>
+                  <Route index element={<ResponsiveItem component={<HomePage/>}/>}/>
+                  <Route index element={<ResponsiveItem component={<HomePage/>}/>}/>
+                  <Route path='room-list' element={<ResponsiveItem component={<ListRoomPage/>}/>}/>
               </Route>
               <Route path='/admin' element={<AdminTemplate/>}>
                   <Route path='user' element={<AdminManagerPage/>}/>
