@@ -32,7 +32,7 @@ const ResponsiveItem = (props: Props) => {
         }   
     },[screen]);
 
-    if(screen.width < 768){
+    if(screen.width < 768 && props.mobileComponent){
         componentRender =  props.mobileComponent
     }
 

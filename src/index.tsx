@@ -17,6 +17,8 @@ import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 import AdminManagerPage from './adminPages/AdminManagerPage/AdminManagerPage';
 import RoomManagerPage from './adminPages/RoomManagerPage/RoomManagerPage';
 import ListRoomPage from './pages/ListRoomPage/ListRoomPage';
+import RoomDetailPage from './pages/RoomDetailPage/RoomDetailPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 export const history:BrowserHistory|any = createBrowserHistory();
 
@@ -31,7 +33,12 @@ root.render(
               <Route path='' element={<HomeTemplate/>}>
                   <Route index element={<ResponsiveItem component={<HomePage/>}/>}/>
                   <Route index element={<ResponsiveItem component={<HomePage/>}/>}/>
+                  <Route path='*' element={<ResponsiveItem component={<HomePage/>}/>}/>
                   <Route path='room-list' element={<ResponsiveItem component={<ListRoomPage/>}/>}/>
+                  <Route path='room-detail'>
+                    <Route path=':id' element={<ResponsiveItem component={<RoomDetailPage/>}/>}/>
+                  </Route>
+                  <Route path='profile' element={<ResponsiveItem component={<ProfilePage/>}/>}/>
               </Route>
               <Route path='/admin' element={<AdminTemplate/>}>
                   <Route path='user' element={<AdminManagerPage/>}/>

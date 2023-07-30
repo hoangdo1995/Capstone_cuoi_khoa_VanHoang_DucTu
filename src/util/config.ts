@@ -70,7 +70,7 @@ http.interceptors.response.use((res) => {
     }
     if (err.response?.status === 403) {
         alert('Không đủ quyền truy cập vào trang này !');
-        history.push('/admin/login');
+        history.push('/login');
     }
     return Promise.reject(err);
 });
