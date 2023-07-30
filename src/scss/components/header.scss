@@ -2,16 +2,41 @@
         color:var(--color-primary);
     
     }
-.searchNav{
-    border: 1px solid rgb(158, 158, 158);
-    box-shadow: 0px 0px 44px 11px rgba(0,0,0,0.1);
-    span{
-        padding: 0 10px;
-        font-weight: 500;
-        color:$color-dark
-    }
-    span:last-of-type{
-        color:$color-grey;
+.navBar{
+    button.searchNav{
+        border: 1px solid rgb(158, 158, 158);
+        box-shadow: 0px 0px 44px 11px rgba(0,0,0,0.1);
+        padding: 8px;
+        a{
+            padding: 0 10px;
+            font-weight: 500;
+            color:$color-grey3;
+            position: relative;
+            &::after{
+                content: '';
+                position: absolute;
+                display: block;
+                left: 10%;
+                bottom: -3px;
+                height: 2px;
+                width: 80%;
+                background-color: $color-grey;
+                transform: scaleX(0);
+                transition: all .2s;
+            }
+            &:hover{
+                color: $color-dark;
+                &::after{
+                    transform: scaleX(1);
+                }
+            }
+            &:focus{
+                &::after{
+                    transform: scaleX(1);
+                }
+            }
+        }
+
         i{
             background-color: $color-primary;
             padding: 10px;
@@ -19,9 +44,83 @@
             color: aliceblue;
             font-size: 14px;
         }
+
+        &:hover{
+            box-shadow: 0px 7px 18px -2px var(--color-shadow);
+        }
     }
-    &:hover{
-        box-shadow: 0px 7px 18px -2px var(--color-shadow);
+    .selectNav{
+        width: 120%;
+        z-index: 100;
+        background-color: $color-white;
+        box-shadow: 0px 0px 44px 11px rgba(0,0,0,0.1);
+        transition: all 0.5s;
+        .ant-select{
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            flex-grow: 3;
+            .ant-select-selector{
+                padding: 10px 20px;
+                border: 0;
+                border-radius: 50px;
+                height: 100%;
+                transition: all .5s;
+                @extend .searchNavHover;
+                .ant-select-selection-placeholder{
+                    color: $color-grey3;
+                    font-weight: $fw-semibold;
+                }
+            }
+            @extend .searchNavHover;
+        }
+        .dateBtn{
+            border:none;
+            border-radius: 50px;
+            padding: 0px 10px;
+            margin: 0;
+            flex-grow: 3;
+            background-color: $color-white;
+            color: $color-grey3;
+            font-weight: $fw-semibold;
+            transition: all .5s;
+            @extend .searchNavHover;
+
+        }
+        .dateBtn:first-of-type{
+            position: relative;
+            &::after{
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 1px;
+                background-color: $color-grey4;
+            }
+            &::before{
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 1px;
+                background-color: $color-grey4;
+            }
+        }
+        .searchBtn{
+            padding: 0 10px;
+            flex-grow: 1;
+            i{
+                background-color: $color-primary;
+                padding: 15px;
+                border-radius: 30px;
+                color: aliceblue;
+                font-size: 14px;
+            }
+        }
     }
 }
 .settingButton{

@@ -1,10 +1,13 @@
     $color-primary:#ff385c;
+    $color-primary-sub:#fe9cae;
     $color-dark:#222222;
-    $color-grey:#717171;
+    $color-grey:#7e7e7e;
     $color-grey2:#ececec4d;
     $color-grey3:#727272;
+    $color-grey4:#e0e0e0;
     $color-white:#ffff;
     $color-light:#fdfafd;
+    $color-blue:#1f72ee;
     $color-dark2:#3d3d3d;
     $color-shadow-dark:rgba(0,0,0,0.46);
     $color-shadow-light:#ffffff5d;
@@ -51,8 +54,41 @@
     $fw-bold:700;
     $fw-bolder:800;
 
+   $fs:("1":14px,"2":16px,"3":18px,"4":20px,"5":24px,"6":30px);
+
+   @each $key,$value in $fs{
+        .fs-#{$key}{
+            font-size:#{$value};
+        }
+   }
+
+   $fs-1:14px;
+   $fs-2:16px;
+   $fs-3:18px;
+   $fs-4:20px;
+   $fs-5:24px;
+   $fs-6:30px;
+
+
     .mainHover{
         &:hover{
             color:var(--color-primary);
+        }
+    }
+
+    .searchNavHover{
+        &:hover{
+            background-color: $color-grey4;
+        }
+        &:active{
+            background-color: $color-grey4;
+        }
+        &:focus{
+            background-color: $color-grey4;
+        }
+    }
+    .hoverNavBlue{
+        &:hover{
+            color:$color-blue;
         }
     }

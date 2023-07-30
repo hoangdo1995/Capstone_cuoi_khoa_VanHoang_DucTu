@@ -3,7 +3,8 @@ import React from "react";
 type Props = {};
 
 const HomePage = (props: Props) => {
-  return <div>HomePage</div>;
+  return <div>
+  </div>;
 };
 
 export default HomePage;

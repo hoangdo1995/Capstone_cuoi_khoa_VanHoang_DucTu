@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { type } from "os";
+import PositionSearchReducer from "./reducers/PositionSearchReducer";
+import ModalReducer from "./reducers/ModalReducer";
 
 export const store = configureStore({
     reducer:{
-        number:(state=1)=>state
+        PositionSearchReducer:PositionSearchReducer,
+        ModalReducer:ModalReducer
     }
 });
 
