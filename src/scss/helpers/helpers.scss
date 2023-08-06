@@ -17,11 +17,13 @@
         --color-secondary:#{$color-grey2};
         --color-grey:#{$color-grey};
         --color-background-primary:#{$color-white};
+        --color-background-body:#{$color-white};
         --color-text:#{$color-dark};
         --color-text-box:#{$color-dark2};
         --color-text-secondary:#{$color-dark2};
         --color-bg-box:#{$color-light};
         --color-hover-1:#{$color-grey3};
+        --color-card-hover:#{$color-grey};
         --color-shadow:#{$color-shadow-dark};
 
     }
@@ -31,11 +33,13 @@
         --color-secondary:#{$color-dark};
         --color-grey:#{$color-grey};
         --color-background-primary:#{$color-dark};
+        --color-background-body:#{$color-grey};
         --color-text:#{$color-light};
         --color-text-box:#{$color-dark2};
         --color-text-secondary:#{$color-light};
         --color-bg-box:#{$color-grey2};
         --color-hover-1:#{$color-grey3};
+        --color-card-hover:#{$color-grey2};
         --color-shadow:#{$color-shadow-light};
     }
 

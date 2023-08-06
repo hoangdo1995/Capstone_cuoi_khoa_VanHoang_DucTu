@@ -5,12 +5,15 @@ body{
     header{
         position: fixed;
         width: 100%;
+        z-index: 5;
         background-color: var(--color-background-primary);
         @import './components/header.scss';
     }
     .body{
-        min-height: 200vh;
+        min-height: 70vh;
         padding-top: 100px;
+        background-color: var(--color-background-body);
+        @import './pages/homepage.scss';
     }
     footer{
         background-color: var(--color-secondary);
