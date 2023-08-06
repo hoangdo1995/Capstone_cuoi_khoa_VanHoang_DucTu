@@ -1,0 +1,29 @@
+.list-room-page{
+    .content{
+        .list-room{
+            .title{
+                padding-bottom: 30px;
+                h5{
+                    color: var(--color-text-h4);
+                    font-size: $fs-3
+                }
+                h4{
+                    font-weight: $fw-bold;
+                    font-size: $fs-6;
+                    color:var(--color-text-secondary);
+                    padding-bottom: 8px;
+                }
+                .filter-tag{
+                    color: var(--color-text-h4);
+                    margin:7px; 
+                    padding: 5px 20px;
+                    border:1px solid var(--color-border-tag);
+                    border-radius: 50px;
+                    font-size: $fs-2;
+                    cursor: pointer;
+                }
+            }
+            @import '../components/roomItem.scss';
+        }
+    }
+}

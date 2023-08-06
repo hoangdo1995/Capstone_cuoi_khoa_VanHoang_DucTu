@@ -14,6 +14,7 @@ body{
         padding-top: 100px;
         background-color: var(--color-background-body);
         @import './pages/homepage.scss';
+        @import './pages/listRoomPage.scss';
     }
     footer{
         background-color: var(--color-secondary);

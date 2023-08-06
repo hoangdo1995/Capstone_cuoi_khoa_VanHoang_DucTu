@@ -11,6 +11,8 @@
     $color-dark2:#3d3d3d;
     $color-shadow-dark:rgba(0,0,0,0.46);
     $color-shadow-light:#ffffff5d;
+    
+
 
     body{
         --color-primary:#{$color-primary};
@@ -25,6 +27,10 @@
         --color-hover-1:#{$color-grey3};
         --color-card-hover:#{$color-grey};
         --color-shadow:#{$color-shadow-dark};
+        --color-text-h4:#{$color-grey};
+        --color-border-tag:#{$color-dark2};
+        --color-text-h3:#{$color-dark2};
+        --color-room-item-hover:#{$color-grey4}
 
     }
 
@@ -41,6 +47,10 @@
         --color-hover-1:#{$color-grey3};
         --color-card-hover:#{$color-grey2};
         --color-shadow:#{$color-shadow-light};
+        --color-text-h4:#{$color-grey4};
+        --color-border-tag:#{$color-grey4};
+        --color-text-h3:#{$color-light};
+        --color-room-item-hover:#{$color-grey2}
     }
 
     $fontWeight: ("lighter":100, "light":300, "normal":400, "semibold":500, "bold":700, "bolder":800);

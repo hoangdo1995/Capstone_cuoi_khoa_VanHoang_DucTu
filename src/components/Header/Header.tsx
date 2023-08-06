@@ -7,6 +7,7 @@ import { DispatchType, RootState } from "../../redux/store";
 import { setModalReducer } from "../../redux/reducers/ModalReducer";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
+import { history } from "../..";
 type Props = {};
 
 const Header = (props: Props) => {
@@ -24,9 +25,9 @@ const Header = (props: Props) => {
               <button className="rounded-pill d-flex bg-light align-items-center justify-content-center searchNav ps-2 pe-1" onClick={()=>{
                   document.querySelector('.selectNav')?.classList.toggle('d-none');
               }}>
-                  <NavLink className="border-end border-1 border-secondary" to={''}>{(value?.name!=='')?value?.name:'Nơi đến'}</NavLink>
-                  <NavLink className="border-end border-2 border-secondary-subtle" to={''}>Trải nghiệm</NavLink>
-                  <NavLink className="" to={''}>Trải nghiệm trực tuyến </NavLink>
+                  <span className="border-end border-1 border-secondary">{(value?.name!=='')?value?.name:'Nơi đến'}</span>
+                  <span className="border-end border-2 border-secondary-subtle">Trải nghiệm</span>
+                  <span className="" >Trải nghiệm trực tuyến </span>
                   <button className="border-0 bg-transparent"><i className="fa fa-search ms-2"></i></button>
               </button>
               <div className="selectNav rounded-pill border border-1 mt-2 d-none d-flex justify-content-between">
@@ -35,6 +36,7 @@ const Header = (props: Props) => {
                   <button className="dateBtn">Thời gian đi</button>
                   <button className="border-0 bg-transparent searchBtn" onClick={()=>{
                     document.querySelector('.selectNav')?.classList.toggle('d-none');
+                    history.push('/list-room');
               }}><i className="fa fa-search ms-2"></i></button>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface PositionType{
-    name:string;
+    name:string|undefined;
     id:number|undefined
 }
 export interface stateType {
