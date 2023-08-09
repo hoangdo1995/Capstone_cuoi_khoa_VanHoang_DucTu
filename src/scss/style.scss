@@ -15,6 +15,12 @@ body{
     footer{
         background-color: var(--color-secondary);
         @import './components/footer.scss';
+    } 
+    .login{
+        @import './components/login.scss';
+    }
+    .register{
+        @import './components/register.scss';
     }
 }
 
@@ -30,9 +36,9 @@ body{
                     font-size: $fs-4;
                     
                 }
-                .toogleBtn{
+                // .toogleBtn{
 
-                }
+                // }
             }
             .navMenu{
                 padding: 20px;

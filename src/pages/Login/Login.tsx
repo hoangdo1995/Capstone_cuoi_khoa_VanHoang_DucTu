@@ -1,52 +1,58 @@
-import React, { Dispatch } from "react";
-import { FormikValues, useFormik } from 'formik'
+import React from 'react'
+import { useFormik } from 'formik'
 import * as yup from 'yup'
-import {useDispatch} from 'react-redux'
-import { DispatchType } from "../../redux/store";
-import { loginActionApi } from "../../redux/reducers/userReducer";
-type Props = {};
-
-export interface FormValue {
-  email:string|null,
-  password:string|null
+import { type } from '@testing-library/user-event/dist/type'
+import { loginAsyncApi } from '../../redux/UserReducer/UserReducer'
+import { DisabledType } from 'antd/es/config-provider/DisabledContext'
+import { useDispatch } from 'react-redux'
+import { DispatchType } from '../../redux/store'
+import '../../scss/components/login.scss'
+export type UserLoginModel = {
+  email: string,
+  password: string
 }
 
-const Login = (props: Props) => {
-  const dispatch:DispatchType= useDispatch();
-  const frm = useFormik<FormValue>({
+type Props = {}
+
+export default function Login({ }: Props) {
+const dispatch:DispatchType = useDispatch();
+  const frmLogin = useFormik<UserLoginModel>({
     initialValues: {
       email: '',
       password: ''
     },
-    validationSchema: yup.object().shape({
-      email: yup.string().required('email can not be blank!').email('email is invalid'),
-      password: yup.string().required('password can not be blank')
+    validationSchema:yup.object().shape({
+      email:yup.string().required('email không được bỏ trống!!').email('email không hợp lệ'),
+      password:yup.string().min(4,'password phải 4 kí tự ').required('password không được bỏ trống!!')
+      
     }),
-    onSubmit: (values: FormValue) => {
-      //đưa về redux để call api
-      const actionAsync = loginActionApi(values);
-      dispatch(actionAsync);
+    onSubmit: (values: UserLoginModel) => {
+       const asyncActionLogin =loginAsyncApi(values);
+       dispatch(asyncActionLogin);
     }
   })
 
 
-  return <form className="container" onSubmit={frm.handleSubmit}>
-    <h4>Login</h4>
-    <div className="form-group">
-      <p className="mt-2">Email</p>
-      <input type="email" placeholder="Email" className="form-control " onChange={frm.handleChange} onBlur={frm.handleBlur}/>
-      <p className='text text-danger'>{frm.errors.email}</p>
-    </div>
-    <div className="form-group">
-      <p className="mt-2">Password</p>
-      <input type="password" placeholder="Password" className="form-control " onChange={frm.handleChange} onBlur={frm.handleBlur}/>
-      <p className='text text-danger'>{frm.errors.password}</p>
-
-    </div>
-    <div className="form-group text-center">
-      <button className="btn btn-success mt-2 " >Login</button>
-    </div>
-  </form>;
-};
-
-export default Login;
+  return (
+    <form className='container' onSubmit={frmLogin.handleSubmit}>
+      <div className='d-felx justify-content-center align-items-center' >
+        <div className='w-100'>
+          <h3>Login</h3>
+          <div className='form-group'>
+            <p>Email</p>
+            <input name='email' type="email" className='form-control' onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur} />
+            {frmLogin.errors.email && <div className='text text-danger'>{frmLogin.errors.email} </div>}
+          </div>
+          <div className='form-group'>
+            <p>Password</p>
+            <input name='password' type="password" className='form-control' onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur} />
+            {frmLogin.errors.password && <div className='text text-danger'>{frmLogin.errors.password} </div>}
+          </div>
+          <div className='form-group'>
+            <button className='btn btn-primary mt-2' type='submit'>Login</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
+}
