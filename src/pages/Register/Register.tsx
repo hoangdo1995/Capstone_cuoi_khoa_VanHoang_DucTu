@@ -1,18 +1,19 @@
 import React from "react";
 import '../../scss/components/register.scss'
-import { useFormik } from 'formik'
+import { Formik, useFormik } from 'formik'
 import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { type } from "@testing-library/user-event/dist/type";
 import { DispatchType } from "../../redux/store";
+import { registerAsyncApi } from "../../redux/UserReducer/UserReducer";
 
 export type UserRegisterModel = {
   id: string,
   name: string,
   email: string,
   phone: string,
-  gender: true,
-  birthday: string,
+  gender: boolean,
+  birthday: string
 }
 type Props = {};
 
@@ -25,35 +26,38 @@ export default function Register({ }: Props) {
       email: '',
       phone: '',
       birthday: '',
+      gender:true,
     },
     validationSchema:yup.object().shape({
       email:yup.string().required('email không được bỏ trống!!').email('email không hợp lệ')
     }),
-   onSubmit:(value:UserRegisterModel)=>{
-    const 
+   onSubmit:(values:UserRegisterModel)=>{
+    const asyncActionRegister =registerAsyncApi(values);
+    dispatch(asyncActionRegister);
    }
   })
+  
 return (<div className="registation">
-  <div className="form-box register ">
+  <div className='form-box register' >
     <h2>Registration</h2>
-    <form action="#">
+    <form action="#" onSubmit={frmRegister.handleSubmit}> 
       <div className="row">
         <div className="col-6 item1">
           <div className="input-box">
             <span className="icon"><i className="fa fa-user" /></span>
-            <input type="text" />
+            <input type="text"   onChange={frmRegister.handleChange} onBlur={frmRegister.handleBlur} />
             <label> Username</label>
 
           </div>
           <div className="input-box">
             <span className="icon"><i className="fa fa-lock" /></span>
-            <input type="password" />
+            <input type="password" onChange={frmRegister.handleChange} onBlur={frmRegister.handleBlur} />
             <label> Password</label>
 
           </div>
           <div className="input-box">
             <span className="icon"><i className="fa fa-lock" /></span>
-            <input type="password" />
+            <input type="password" onChange={frmRegister.handleChange} onBlur={frmRegister.handleBlur} />
             <label> Confirmpassword</label>
 
           </div>
@@ -61,13 +65,13 @@ return (<div className="registation">
         <div className="col-6 item2">
           <div className="input-box">
             <span className="icon"><i className="fa fa-envelope" /></span>
-            <input type="email" />
+            <input type="email" onChange={frmRegister.handleChange} onBlur={frmRegister.handleBlur} />
             <label> Email</label>
 
           </div>
           <div className="input-box">
             <span className="icon"><i className="fa fa-phone" /></span>
-            <input type="text" />
+            <input type="text" onChange={frmRegister.handleChange} onBlur={frmRegister.handleBlur} />
             <label> Phone</label>
 
           </div>
@@ -81,7 +85,7 @@ return (<div className="registation">
         <label><input type="checkbox" />I agree to the terms &amp; conditions</label>
         <a href="$"> Forgot password</a>
       </div>
-      <button type="submit" className="btn btn-primary" id="btnSubmit">Register</button>
+      <button type="submit" className="btn btn-primary">Register</button>
       <div className="login-register">
         <p>Already have an account? <a href="#" className="login-link">Login</a></p>
       </div>
