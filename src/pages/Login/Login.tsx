@@ -54,19 +54,19 @@ export default function Login({ }: Props) {
     //     </div>
     //   </div>
     // </form>
-    //
+    
     <div className="form-box login ">
       <h2>Login</h2>
-      <form action="#"  onSubmit={frmLogin.handleSubmit}>
-        <div className="input-box">
+      <form  onSubmit={frmLogin.handleSubmit}>
+        <div className="input-box form-group">
           <span className="icon"><i className="fa fa-envelope" /></span>
-          <input type="email"  onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur}  />
+          <input type="email" name='email' className='form-control' onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur}  />
           {frmLogin.errors.email && <div className='text text-danger'>{frmLogin.errors.email} </div>}
           <label> Email</label>
         </div>
-        <div className="input-box">
+        <div className="input-box form-group">
           <span className="icon"><i className="fa fa-lock" /></span>
-          <input type="password"  onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur}  />
+          <input type="password" className='form-control' name='password' onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur}  />
           {frmLogin.errors.password && <div className='text text-danger'>{frmLogin.errors.password} </div>}
           <label> Password</label>
         </div>

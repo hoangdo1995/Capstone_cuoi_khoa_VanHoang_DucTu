@@ -21,7 +21,14 @@ const Header = (props: Props) => {
       return <li><Link className="dropdown-item" to={'#'} data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => {
         const action = setModalReducer(<Login />);
         dispatch(action);
-      }}>{userLogin.email}</Link></li>
+      }}>{userLogin.email}</Link>
+
+         <span onClick={()=>{
+
+         }} style={{cursor:'pointer'}} className='nav-link'>
+          Log out
+           </span>
+      </li>
     } else {
       return <li><Link className="dropdown-item" to={'#'} data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => {
         const action = setModalReducer(<Login />);

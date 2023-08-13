@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { config } from 'process';
 import { history } from '../index';
 
 //KHAI BÁO CÁC HẰNG SỐ DÙNG CHUNG
 
-export const DOMAIN:string = 'https://airbnbnew.cybersoft.edu.vn';
-export const TOKEN_CYBERSOFT:string = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA0NSIsIkhldEhhblN0cmluZyI6IjA4LzEyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTcwMTk5MzYwMDAwMCIsIm5iZiI6MTY3MjA3NDAwMCwiZXhwIjoxNzAyMTQxMjAwfQ.1MKFgiR_REeXZ8RKBhPFQLyitVek8kDJ3u1JPaCB1MU`;
+export const DOMAIN: string = 'https://airbnbnew.cybersoft.edu.vn';
+export const TOKEN_CYBERSOFT: string = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA0NSIsIkhldEhhblN0cmluZyI6IjA4LzEyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTcwMTk5MzYwMDAwMCIsIm5iZiI6MTY3MjA3NDAwMCwiZXhwIjoxNzAyMTQxMjAwfQ.1MKFgiR_REeXZ8RKBhPFQLyitVek8kDJ3u1JPaCB1MU`;
 export const USER_LOGIN = 'user_login';
 
 //Khai báo các phương thức xử lý trên LocalStorage;
@@ -21,7 +22,7 @@ export const { getStoreJson, setStoreJson, getStore, setStore } = {
         const strJSON = JSON.stringify(data);
         localStorage.setItem(name, strJSON);
     },
-    getStore: (name: string): string | null => {
+    getStore: (name: string): string | null | boolean | any => {
         return localStorage.getItem(name);
     },
     setStore: (name: string, data: string): void => {
@@ -49,7 +50,7 @@ httpNonAuth.interceptors.request.use((config: any) => {
     return Promise.reject(err)
 });
 http.interceptors.request.use((config: any) => {
-    config.headers = { ...config.headers}
+    config.headers = { ...config.headers }
     let token = getStoreJson(USER_LOGIN)?.accessToken;
     config.headers.Authorization = `Bearer ${token}`;
     config.headers.tokenCybersoft = TOKEN_CYBERSOFT;
@@ -71,9 +72,14 @@ http.interceptors.response.use((res) => {
     if (err.response?.status === 403) {
         alert('Không đủ quyền truy cập vào trang này !');
         history.push('/login');
+    } 
+    if(err.response?.status===400 || err.response?.status ===404){
+        history.push('/');
     }
     return Promise.reject(err);
 });
+
+
 
 /* statusCode thông dụng : 
     200: Dữ liệu gửi đi và nhận về kết quả thành công (OK)
