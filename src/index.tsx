@@ -17,6 +17,7 @@ import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 import AdminManagerPage from './adminPages/AdminManagerPage/AdminManagerPage';
 import RoomManagerPage from './adminPages/RoomManagerPage/RoomManagerPage';
 import ListRoomPage from './pages/ListRoomPage/ListRoomPage';
+import RoomDetailPage from './pages/RoomDetailPage/RoomDetailPage';
 
 export const history:BrowserHistory|any = createBrowserHistory();
 
@@ -32,6 +33,9 @@ root.render(
                   <Route index element={<HomePage/>}/>
                   <Route path='*' element={<HomePage/>}/>
                   <Route path='list-room' element={<ListRoomPage/>}/>
+                  <Route path='room-detail'>
+                    <Route path=':id' element={<RoomDetailPage/>}/>
+                  </Route>
               </Route>
               <Route path='/admin' element={<AdminTemplate/>}>
                   <Route path='user' element={<AdminManagerPage/>}/>

@@ -1,0 +1,345 @@
+.detail-page{
+    .title{
+        padding:5px 70px;
+        .name{
+            font-size: $fs-6;
+            color: var(--color-text-h3);
+            font-weight: $fw-bold;
+        }
+        .rate-share{
+            .rate{
+                span{
+                    margin-right: 10px;
+                    font-size: $fs-1;
+                    text-decoration: underline;
+                    color:var(--color-text-h4);
+                    i{
+                        margin-right: 5px;
+                        color: $color-primary;
+                    }
+                }
+            }
+            .share{
+                span{
+                    margin-left:15px ;
+                    color: var(--color-text-h4);
+                    i{
+                        margin-right: 5px;
+                        color: var(--color-text-h3);
+                    }
+                }
+            }
+        }
+    }
+    .image{
+        padding: 10px 70px 20px;
+        img{
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            display: block;
+        }
+    }
+    .content{
+        padding: 10px 70px;
+        .room-detail{
+            max-width: 65%;
+            padding-right: 7%;
+            .room-infor{
+                padding: 0 0 15px;
+                .room-name{
+                    .name{
+                        font-size: $fs-5;
+                        color: var(--color-text-h3);
+                        font-weight: $fw-semibold;
+                        margin: 0;
+                    }
+                    .tags{
+                        .tag{
+                            i{
+                                font-size: 6px;
+                                margin: 0 5px 0 8px;
+                                color: var(--color-text-h4);
+                            }
+                            span{
+                                font-size: $fs-2;
+                                color: var(--color-text-h4);
+                            }
+                        }
+                    }
+                
+                }
+                .room-lease{
+                    img{
+                        width: 70px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+            .room-details{
+                width: 100%;
+                .detail{
+                    width: 100%;
+                    margin: 20px 0;
+                    display: flex;
+                    align-items: center;
+                    .icon{
+                        i{
+                            font-size: $fs-5;
+                            margin-right: 8px;
+                            height: 100%;
+                            color: var(--color-text-h4);
+                        }
+                    }
+                    .content-detail{
+                        margin: 0;
+                        h4{
+                            font-size: $fs-2;
+                            font-weight: $fw-semibold;
+                            margin: 0;
+                            color: var(--color-text-h3);
+                        }
+                        p{
+                            font-weight: $fw-light;
+                            color: var(--color-text-h4);
+                            font-size: $fs-1;
+                            margin: 0;
+                            margin-top: 3px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            .convenient{
+                padding: 15px 0;
+                h5{
+                    font-size: $fs-5;
+                    font-weight: $fw-normal;
+                    color: var(--color-text-h4);
+                }
+                .covenient-content{
+                    width: 100%;
+                    margin: 0;
+                    padding: 15px 0;
+                    .tag{
+                        img{
+                            display: block;
+                            margin-right: 7px;
+                        }
+                        span{
+                            padding: 8px 0;
+                        }
+                    }
+                }
+            }
+            
+        }
+        .booking{
+            max-width: 100%;
+            min-width: 40%;
+            .booking-content{
+                border:1px solid var(--color-border-tag);
+                border-radius: 10px;
+                padding: 20px 25px;
+                width: 100%;
+                .price{
+                    h5{
+                        font-size: $fs-4;
+                        font-weight: $fw-light;
+                        span{
+                            font-size: $fs-5;
+                            font-weight: $fw-semibold;
+                        }
+                    }
+                    p{
+                        font-weight: $fw-light;
+                        text-decoration:underline;
+                        i{
+                            font-size: $fs-2;
+                            color:$color-primary;
+                            margin-right:5px;
+                        }
+                    }
+                }
+                .book-infor{
+                    @import '../components/datepicker.scss';
+                    .quantity-select{
+                        width: 100%;
+                        background-color: $color-white;
+                        color: $color-grey;
+                        font-weight: $fw-semibold;
+                        border: 1px solid $color-grey4;
+                        padding: 10px 15px;
+                        .quantity{
+                            margin: 0;
+                            padding: 0;
+                            .title{
+                                padding: 0;
+                                text-align: left;
+                                font-size: $fs-3;
+                                color: $color-grey;
+                                font-weight: $fw-semibold;
+                            }
+                            .value{
+                                padding: 0;
+                                font-weight: $fw-light;
+                            }
+                        }
+                        .icon{
+
+                        }
+                    }
+                    .collapse{
+                        width: 100%;
+                        border: 1px solid $color-grey4;
+                        border-radius: 8px;
+                        background-color: $color-white;
+                        .collapse-content{
+                            padding: 10px 15px;
+                            .title{
+                                padding: 0;
+                                p{
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                                .text1{
+                                    font-size: $fs-3;
+                                    font-weight: $fw-semibold;
+                                    color:$color-grey;
+                                }
+                                .text2{
+                                    font-size: $fs-2;
+                                    font-weight: $fw-light;
+                                    color:$color-grey3;
+                                }
+                            }
+                            .choose{
+                                button{
+                                    background-color: transparent;
+                                    color: $color-grey;
+                                    width: 30px;
+                                    height:30px;
+                                    border: 1px solid $color-grey;
+                                    border-radius: 50%;
+                                    padding: 10px;
+                                }
+                                span{
+                                    margin: 0 10px;
+                                    line-height: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+                button{
+                    margin-top: 20px;
+                    width: 100%;
+                    background-color: $color-primary;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    border: none;
+                    color: $color-white;
+                    font-size: $fs-4;
+                    font-weight: $fw-semibold;
+                }
+                .alert-text{
+                    padding: 15px 0;
+                    font-size: $fs-4;
+                    font-weight: $fw-light;
+                    text-decoration: underline;
+                }
+                .bill{
+                    .bill-item{
+                        font-size: $fs-4;
+                        .service{
+                            font-size: inherit;
+                        }
+                        .money{
+                            font-size: inherit;
+                            font-weight: $fw-bold;
+                        }
+                    }
+                    .bill-total{
+                        font-size: $fs-4;
+                        padding: 10px 0;
+                        .total{
+                            font-size: inherit;
+                        }
+                        .money{
+                            font-size: inherit;
+                            font-weight: $fw-bold;
+                        }
+                    }
+                }
+            }
+            .report{
+                p{
+                    font-size: $fs-3;
+                    text-decoration: underline;
+                    margin-top: 20px;
+                    font-weight: $fw-light;
+                }
+            }
+        }
+    }
+    .comment{
+        width: 100%;
+        .comment-container{
+            margin: 0;
+            .comment-item{
+
+                padding: 10px;
+                .title{
+                    padding: 0;
+                    img{
+                        padding: 0;
+                        width: 45px;
+                        height: 45px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        margin: 0;
+                    }
+                    .infor{
+                        margin-left: 8px;
+                        h4{
+                            font-size: $fs-3;
+                            font-weight: $fw-normal;
+                            margin: 0;
+                            color:var(--color-text-h3)
+                        }
+                        .comment-date{
+                            color: var(--color-text-h4);
+                        }
+                    }
+                }
+                .comment-content{
+                    margin-top: 8px;
+                    color: var(--color-text-h4);
+                    font-weight: $fw-light;
+                }
+            }
+            
+        }
+        .comment-box{
+            padding-bottom: 20px;
+            width: 100%;
+            .box{
+                width: 100%;
+                textarea{
+                    width: 100%;
+                    border:  1px solid black;
+                    border-radius: 5px;
+                    padding: 10px;
+                }
+            }
+            button{
+                margin-top: 10px;
+                background-color: #469f43;
+                border-radius: 5px;
+                border:none;
+                padding: 10px 20px;
+                color: $color-white;
+            }
+        }
+    }
+}

@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { RoomDetailType } from "../Modal/UtilModel";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { Link } from "react-router-dom";
 
 type Props = {
   data?:RoomDetailType
@@ -16,7 +17,7 @@ const RoomItem = (props: Props) => {
   </div>
   <div className="room-infor mb-3">
       <p className="room-group">Toàn bộ căn hộ dịch vụ tại {location?.name}</p>
-      <h3 className="room-name">{props.data?.tenPhong}</h3>
+      <Link to={`/room-detail/${props.data?.id}`} className="room-name">{props.data?.tenPhong}</Link>
       <div className="room-tag d-flex" style={{flexWrap:'wrap'}}>
           <div className="tag d-flex align-items-center m-0 p-0">
             <i className="fa fa-dot-circle"></i>

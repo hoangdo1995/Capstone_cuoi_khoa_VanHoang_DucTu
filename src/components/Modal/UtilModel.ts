@@ -1,3 +1,5 @@
+import dayjs, { Dayjs } from "dayjs";
+
 export interface LocationType {
     id:        number;
     tenViTri:  string;
@@ -27,4 +29,27 @@ export interface RoomDetailType {
     maViTri:  number;
     hinhAnh:  string;
 }
+
+export interface CommentType {
+    ngayBinhLuan:     string;
+    noiDung:          string;
+    saoBinhLuan:      number;
+    tenNguoiBinhLuan: string;
+    avatar:           string;
+}
+
+export interface BookRoomType {
+    id:           number;
+    maPhong:      number;
+    ngayDen:      string|undefined;
+    ngayDi:       string|undefined;
+    soLuongKhach: number;
+    maNguoiDung:  number;
+}
+
+export interface DaySelectType {
+    startDay:string|undefined,
+    endDay:string|undefined,
+    rangeDay:number|undefined
+  }
 

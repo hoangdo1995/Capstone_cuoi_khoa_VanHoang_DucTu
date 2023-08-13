@@ -4,7 +4,7 @@ import { history } from '../index';
 //KHAI BÁO CÁC HẰNG SỐ DÙNG CHUNG
 
 export const DOMAIN:string = 'https://airbnbnew.cybersoft.edu.vn';
-export const TOKEN_CYBERSOFT:string = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA0NSIsIkhldEhhblN0cmluZyI6IjA4LzEyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTcwMTk5MzYwMDAwMCIsIm5iZiI6MTY3MjA3NDAwMCwiZXhwIjoxNzAyMTQxMjAwfQ.1MKFgiR_REeXZ8RKBhPFQLyitVek8kDJ3u1JPaCB1MU`;
+export const TOKEN_CYBERSOFT:string = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlSlMgMzMiLCJIZXRIYW5TdHJpbmciOiIwNi8wMi8yMDI0IiwiSGV0SGFuVGltZSI6IjE3MDcxNzc2MDAwMDAiLCJuYmYiOjE2ODk2OTk2MDAsImV4cCI6MTcwNzMyNTIwMH0.Ti8xtGGllk9j0u36EAuC9HOWsXJ7QELlIx8X5mDHaEE`;
 export const USER_LOGIN = 'user_login';
 
 //Khai báo các phương thức xử lý trên LocalStorage;
@@ -58,6 +58,16 @@ http.interceptors.request.use((config: any) => {
     return Promise.reject(err)
 });
 
+//cấu hình cho response (kết quá trả về từ api nonAuthorize)
+httpNonAuth.interceptors.response.use((res)=>{
+    return res;
+},(err)=>{
+    console.log(err);
+    if(err.response?.status === 404){
+        console.log('chưa có dử liệu');
+        
+    }
+})
 
 //Cấu hình cho response (kết quả trả về từ api)
 http.interceptors.response.use((res) => {
@@ -85,6 +95,11 @@ http.interceptors.response.use((res) => {
     403: Forbiden ( Lỗi chưa đủ quyền truy cập vào api )
 
 */
+
+// hàm kiểm tra ngày đặt l
+export function isTimeInRange(targetTime: Date, startDate: Date, endDate: Date): boolean {
+    return targetTime >= startDate && targetTime <= endDate;
+  }
 
 
 

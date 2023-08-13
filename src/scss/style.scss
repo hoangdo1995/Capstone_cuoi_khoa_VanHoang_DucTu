@@ -15,6 +15,7 @@ body{
         background-color: var(--color-background-body);
         @import './pages/homepage.scss';
         @import './pages/listRoomPage.scss';
+        @import './pages/detailpage.scss';
     }
     footer{
         background-color: var(--color-secondary);
