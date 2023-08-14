@@ -19,6 +19,8 @@ const HomeTemplate = (props: Props) => {
       <Footer/>
     </footer>
     <ModalContainer/>
+    
+
   </div>;
 };
 

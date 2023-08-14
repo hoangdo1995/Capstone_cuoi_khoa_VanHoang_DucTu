@@ -1,0 +1,111 @@
+.adminPageManager{
+    .content{
+        padding: 10px 20px;
+        h3{
+            color:$color-blue;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .searchBar{
+            width: 100%;
+            margin-bottom: 20px;
+            input{
+            min-width: 80%;
+            padding: 5px 10px;
+            border-radius: 3px;
+            }
+            button{
+                width: 100px;
+                padding: 5px 10px;
+                color: $color-light;
+                background-color: $color-blue;
+                border-color: $color-blue;
+                &:hover{
+                    background-color: $color-primary;
+                }
+            }
+        }
+        .table{
+            thead{
+                th{
+                    background-color: $color-grey;
+                    text-align: center;
+                    border-right: 1px solid $color-dark2;
+                }
+            }
+            tbody{
+                tr{
+                    &:hover{
+                        cursor: pointer;
+                        background-color: $color-grey4;
+                    }
+                    td{
+                        background-color: transparent;
+                        max-width: 200px;
+                        border-right: 1px solid $color-grey;
+                        text-align: center;
+                        img{
+                            width: 80px;
+                            max-height: 80px;
+                            object-fit: cover;
+                            display: block;
+                            width: 100%;
+                            margin: 0;
+                        }
+                        button{
+                            font-size: $fs-1;
+                            padding: 3px 5px;
+                            margin-left: 10px;
+                            border-radius: 5px;
+                            border-color: $color-primary-sub;
+                            color:$color-light;
+                            background-color: $color-blue;
+                            transition: all .5s;
+                            &:hover{
+                                background-color: $color-primary;
+                            }
+                        }
+                    }
+                    td.overflow-ellipsis {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                      }
+                    .avatarTd{
+                        max-width: 100px;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+    .modal{
+        .modal-dialog{
+            .modal-content{
+                .modal-header{
+                    background-color: $color-grey4;
+                    h1{
+
+                    }
+                }
+                .modal-body{
+                    .content{
+                        .col-6{
+                            margin-bottom: 10px;
+                            p{
+                                margin: 0;
+                                padding: 8px 0;
+                                color: $color-dark;
+                                font-weight: $fw-semibold;
+                            }
+                            input{
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
