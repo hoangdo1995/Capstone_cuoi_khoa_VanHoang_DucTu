@@ -13,7 +13,9 @@ export type UserRegisterModel = {
   email: string,
   phone: string,
   gender: boolean,
-  birthday: string
+  birthday: string,
+  password: string,
+  confirmPassword: string
 }
 type Props = {};
 
@@ -27,15 +29,22 @@ export default function Register({ }: Props) {
       phone: '',
       birthday: '',
       gender: true,
+      password: '',
+      confirmPassword:'',
+
     },
     validationSchema: yup.object().shape({
-      email: yup.string().required('email không được bỏ trống!!').email('email không hợp lệ')
+      email: yup.string().required('email không được bỏ trống!!').email('email không hợp lệ'),
+      password: yup.string().min(4, 'password phải 4 kí tự ').required('password không được bỏ trống!!'),
+      // confirmPassword:yup
+
     }),
     onSubmit: (values: UserRegisterModel) => {
       const asyncActionRegister = registerAsyncApi(values);
       dispatch(asyncActionRegister);
     }
   })
+
 
   return (<div className="registation">
     <div className='form-box register' >
