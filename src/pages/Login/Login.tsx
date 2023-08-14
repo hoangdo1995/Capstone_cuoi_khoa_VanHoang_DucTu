@@ -75,9 +75,6 @@ export default function Login({ }: Props) {
           <a href="$"> Forgot password</a>
         </div>
         <button type="submit" className="btn">Login</button>
-        <div className="login-register">
-          <p>Don't have an account? <a href="#" className="register-link">Register</a></p>
-        </div>
       </form>
     </div>
 

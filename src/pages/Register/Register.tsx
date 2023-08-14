@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { type } from "@testing-library/user-event/dist/type";
 import { DispatchType } from "../../redux/store";
 import { registerAsyncApi } from "../../redux/UserReducer/UserReducer";
+import { PASSWORD_REGEX, PHONE_VN_REGEX } from "../../util/config";
 
 export type UserRegisterModel = {
   id: string,
@@ -30,13 +31,21 @@ export default function Register({ }: Props) {
       birthday: '',
       gender: true,
       password: '',
-      confirmPassword:'',
+      confirmPassword: '',
 
     },
     validationSchema: yup.object().shape({
       email: yup.string().required('email không được bỏ trống!!').email('email không hợp lệ'),
-      password: yup.string().min(4, 'password phải 4 kí tự ').required('password không được bỏ trống!!'),
-      // confirmPassword:yup
+      password: yup.string().min(4, 'password phải 4 kí tự ').required('password không được bỏ trống!!').matches(PASSWORD_REGEX, "Password sai định dạng!"),
+      confirmPassword: yup
+        .string()
+        .required("Password không được để trống!")
+        .oneOf([yup.ref("password")], "Không khớp với password!"),
+      phone: yup
+        .string()
+        .required("Phone không được để trống!")
+        .matches(PHONE_VN_REGEX, "Phone sai định dạng!"),
+      gender: yup.boolean(),
 
     }),
     onSubmit: (values: UserRegisterModel) => {
