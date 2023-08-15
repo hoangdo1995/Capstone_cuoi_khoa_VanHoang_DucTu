@@ -18,6 +18,10 @@ import AdminManagerPage from './adminPages/AdminManagerPage/AdminManagerPage';
 import RoomManagerPage from './adminPages/RoomManagerPage/RoomManagerPage';
 import ListRoomPage from './pages/ListRoomPage/ListRoomPage';
 import RoomDetailPage from './pages/RoomDetailPage/RoomDetailPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import Login from './pages/Login/Login';
+import LoginRegisterHolder from './hoc/LoginRegisterHolder/LoginRegisterHolder';
+import Register from './pages/Register/Register';
 
 export const history:BrowserHistory|any = createBrowserHistory();
 
@@ -32,10 +36,13 @@ root.render(
               <Route path='' element={<HomeTemplate/>}>
                   <Route index element={<HomePage/>}/>
                   <Route path='*' element={<HomePage/>}/>
+                  <Route path='login' element={<LoginRegisterHolder component={<Login/>}/>}/>
+                  <Route path='register' element={<LoginRegisterHolder component={<Register/>}/>}/>
                   <Route path='list-room' element={<ListRoomPage/>}/>
                   <Route path='room-detail'>
                     <Route path=':id' element={<RoomDetailPage/>}/>
                   </Route>
+                  <Route path='profile' element={<ProfilePage/>}/>
               </Route>
               <Route path='/admin' element={<AdminTemplate/>}>
                   <Route path='user' element={<AdminManagerPage/>}/>

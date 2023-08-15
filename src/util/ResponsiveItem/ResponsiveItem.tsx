@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 
 type Props = {
     component:JSX.Element,
-    mobileComponent:JSX.Element
+    mobileComponent?:JSX.Element
 };
 
 type Screen = {
@@ -32,7 +32,7 @@ const ResponsiveItem = (props: Props) => {
         }   
     },[screen]);
 
-    if(screen.width < 768){
+    if(screen.width < 768 && props.mobileComponent){
         componentRender =  props.mobileComponent
     }
 

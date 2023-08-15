@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from "react";
-import {NavLink,Link} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { NavLink, Link } from 'react-router-dom';
 import PositionSelect from "../PositionSelect/PositionSelect";
 import { PositionType } from "../../redux/reducers/PositionSearchReducer";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,15 +8,31 @@ import { setModalReducer } from "../../redux/reducers/ModalReducer";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import { history } from "../..";
-type Props = {};
+import { USER_LOGIN, getStoreJson, setStoreJson } from "../../util/config";
+
+export interface UserLoginType {
+  token:string,
+  email:string
+}
+type Props = {
+  modalStateHandle:(state:boolean)=>void
+};
 
 const Header = (props: Props) => {
-  const dispatch:DispatchType =  useDispatch();
-  let [iconTheme,setIconTheme] = useState(<i className="fa fa-sun"></i>);
-  const {value} = useSelector((state:RootState) => state.PositionSearchReducer);
-  useEffect(()=>{
+  const dispatch: DispatchType = useDispatch();
+  let [iconTheme, setIconTheme] = useState(<i className="fa fa-sun"></i>);
+  const { value } = useSelector((state: RootState) => state.PositionSearchReducer);
+  const { userLogin } = useSelector((state: RootState) => state.UserReducer);
+  
+  const [userToken,setUserToken] = useState<UserLoginType>(getStoreJson(USER_LOGIN));
+  const setUserTokenState = (value:UserLoginType)=>{
+      setUserToken(value);
+  }
+  useEffect(() => {
 
-  },[])
+  }, [userToken,userLogin])
+  
+  
   return <div className="d-flex justify-content-between align-items-baseline py-3 container">
             <NavLink to={''} className="fs-2 fw-bolder d-flex align-items-center logo">
               <i className="fab fa-airbnb me-2 fw-bolder fs-1"></i>AirBnB
@@ -51,17 +67,19 @@ const Header = (props: Props) => {
                   <i className="fa fa-user-circle" />
                 </button>
                 <ul className="dropdown-menu">
-                  <li><Link className="dropdown-item" to={'#'} data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={()=>{
-                    const action = setModalReducer(<Login/>);
-                    dispatch(action);
-                  }}>Log in</Link></li>
-                  <li><Link className="dropdown-item" to={'#'} data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={()=>{
-                    const action = setModalReducer(<Register/>);
-                    dispatch(action);
-                  }}>Sign in</Link></li>
+                  {userLogin?.token&&<li><Link className="dropdown-item" to={'profile'}>{userLogin.user.name}</Link></li>}
+                  {!userLogin?.token&&<li><Link className="dropdown-item" to={'login'}>Log in</Link></li>}
+                  {userLogin?.token&&<li><Link className="dropdown-item text-danger" to={"#"}onClick={()=>{
+                    if(window.confirm('Bạn muốn đăng xuất khỏi tài khoản?')){
+                      setStoreJson(USER_LOGIN,'');
+                      setUserToken({email:userToken.email,token:''})
+                      window.location.reload();
+                    }
+                  }}>Logout</Link></li>}
+                  <li><Link className="dropdown-item" to={'register'}>Sign in</Link></li>
+                  {userLogin?.user.role=="ADMIN"&&<li><Link className="dropdown-item" to='admin/user'>Đi tới trang admin</Link></li>}
                 </ul>
-
-            </div>
+    </div>
   </div>;
 };
 

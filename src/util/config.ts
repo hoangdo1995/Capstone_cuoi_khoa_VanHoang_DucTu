@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { config } from 'process';
 import { history } from '../index';
 
 //KHAI BÁO CÁC HẰNG SỐ DÙNG CHUNG
@@ -24,7 +25,7 @@ export const { getStoreJson, setStoreJson, getStore, setStore } = {
         const strJSON = JSON.stringify(data);
         localStorage.setItem(name, strJSON);
     },
-    getStore: (name: string): string | null => {
+    getStore: (name: string): string | null | boolean | any => {
         return localStorage.getItem(name);
     },
     setStore: (name: string, data: string): void => {
@@ -53,14 +54,16 @@ httpNonAuth.interceptors.request.use((config: any) => {
 });
 
 http.interceptors.request.use((config: any) => {
-    config.baseURL = DOMAIN;
-    config.headers = { ...config.headers}
-    // let token = getStoreJson(USER_LOGIN)?.accessToken;
-    // config.headers.Authorization = `Bearer ${token}`;
+    config.headers = { ...config.headers }
+    let token = getStoreJson(USER_LOGIN)?.token;
+    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.token =  token;
     config.headers.tokenCybersoft = TOKEN_CYBERSOFT;
+    console.log(config.headers);
+    
     return config;
 }, err => {
-    return Promise.reject(err)
+    return Promise.reject(err);
 });
 
 //cấu hình cho response (kết quá trả về từ api nonAuthorize)
@@ -79,16 +82,24 @@ http.interceptors.response.use((res) => {
     return res;
 }, (err) => {
     //Xử lý lỗi cho api bị lỗi theo status code 
-    console.log(err);
     if (err.response?.status === 401) {
         history.push('/login');
+        document.querySelector('.modal-backdrop')?.classList.remove('modal-backdrop');
     }
     if (err.response?.status === 403) {
         alert('Không đủ quyền truy cập vào trang này !');
-        // history.push('/admin/login');
+        history.push('/login');
+        document.querySelector('.modal-backdrop')?.classList.remove('modal-backdrop');
+    } 
+    if(err.response?.status===400 || err.response?.status ===404){
+        // history.push('/');
+        document.querySelector('.modal-backdrop')?.classList.remove('modal-backdrop');
     }
+    alert(err.response.data.content);
     return Promise.reject(err);
 });
+
+
 
 /* statusCode thông dụng : 
     200: Dữ liệu gửi đi và nhận về kết quả thành công (OK)

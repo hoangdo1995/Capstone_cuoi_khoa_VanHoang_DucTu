@@ -101,7 +101,7 @@ const AddAdminModalComonent = (props: Props) => {
                 </div>
                 <div className="col-6 mb-3">
                   <p className="pb-0">Số điện thoại</p>
-                  <input type="text" id="phone" onChange={formik.handleChange} className="w-100" defaultValue={dayjs(formik.values.phone).format('YYYY-DD-MM')}/>
+                  <input type="text" id="phone" onChange={formik.handleChange} className="w-100" defaultValue={formik.values.phone}/>
                   {formik.errors.phone&&<p className='text-danger position-absolute pt-0'>{formik.errors.phone}</p>}
                 </div>
                 <div className="col-6 mb-3">
@@ -111,7 +111,7 @@ const AddAdminModalComonent = (props: Props) => {
                 </div>
                 <div className="col-6 mb-3">
                   <p className="pb-0">Ngày sinh</p>
-                  <input type="date" id="birthday" onChange={formik.handleChange} className="w-100" defaultValue={formik.values.birthday}/>
+                  <input type="date" id="birthday" onChange={formik.handleChange} className="w-100" defaultValue={dayjs(formik.values.birthday).format('YYYY-DD-MM')}/>
                   {formik.errors.birthday&&<p className='text-danger position-absolute pt-0'>{formik.errors.birthday}</p>}
                 </div>
                 <div className="col-6 mb-3">
@@ -138,12 +138,8 @@ const AddAdminModalComonent = (props: Props) => {
                     {(userInforState=='edit')&&<button className="btn btn-primary me-3" onClick={async(event)=>{
                       event.preventDefault()
                       if(window.confirm(`Bạn muốn thay đổi thông tin người dùng ${formik.values.name}?`)){
-                        const headers = {
-                          tokenCybersoft: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlSlMgMzMiLCJIZXRIYW5TdHJpbmciOiIwNi8wMi8yMDI0IiwiSGV0SGFuVGltZSI6IjE3MDcxNzc2MDAwMDAiLCJuYmYiOjE2ODk2OTk2MDAsImV4cCI6MTcwNzMyNTIwMH0.Ti8xtGGllk9j0u36EAuC9HOWsXJ7QELlIx8X5mDHaEE',
-                          token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyMzgiLCJlbWFpbCI6ImhvYW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwibmJmIjoxNjkyMDU2ODQyLCJleHAiOjE2OTI2NjE2NDJ9.232nFZXfho9yslAnyMZEKEQ0N_Zrw1l5xy05x31Sh5Q'
-                        };
                         try{
-                          const res = await http.put(`/api/users/${formik.values.id}`,formik.values,{headers})
+                          const res = await http.put(`/api/users/${formik.values.id}`,formik.values)
                           if(res.status == 200){
                             alert('Chỉnh sửa người dùng thành công');
                             console.log(res);
@@ -159,11 +155,7 @@ const AddAdminModalComonent = (props: Props) => {
                         event.preventDefault();
                         if(window.confirm(`Bạn muốn xóa người dùng ${formik.values.name}!`)){
                           try{
-                            const headers = {
-                              tokenCybersoft: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA0NSIsIkhldEhhblN0cmluZyI6IjA4LzEyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTcwMTk5MzYwMDAwMCIsIm5iZiI6MTY3MjA3NDAwMCwiZXhwIjoxNzAyMTQxMjAwfQ.1MKFgiR_REeXZ8RKBhPFQLyitVek8kDJ3u1JPaCB1MU',
-                              token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyMzgiLCJlbWFpbCI6ImhvYW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwibmJmIjoxNjkyMDU2ODQyLCJleHAiOjE2OTI2NjE2NDJ9.232nFZXfho9yslAnyMZEKEQ0N_Zrw1l5xy05x31Sh5Q'
-                            };
-                            const res = await http.delete(`/api/users?id=${formik.values.id}`,{headers})
+                            const res = await http.delete(`/api/users?id=${formik.values.id}`)
                           if(res.status == 200){
                             alert('Xóa người dùng thành công');
                             console.log(res);

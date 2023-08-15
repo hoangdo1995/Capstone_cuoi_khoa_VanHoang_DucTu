@@ -69,7 +69,7 @@ const RoomManagerPage = (props: Props) => {
   return <div className="adminPageManager">
       <div className="content">
         <h3 data-bs-toggle="modal" data-bs-target="#addRoomModal" onClick={()=>{
-          
+            setRoomState('add');
         }}>Thêm phòng</h3>
         <div className="searchBar">
           <input type="text" onChange={(event)=>{}}/>

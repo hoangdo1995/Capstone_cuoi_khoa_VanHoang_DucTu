@@ -40,17 +40,10 @@ const AddRoomModalComponent = (props: Props) => {
         },
         onSubmit: async (values) => {
             const valuesRoom = {...values,id:0}
-            const headers = {
-              tokenCybersoft: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA0NSIsIkhldEhhblN0cmluZyI6IjA4LzEyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTcwMTk5MzYwMDAwMCIsIm5iZiI6MTY3MjA3NDAwMCwiZXhwIjoxNzAyMTQxMjAwfQ.1MKFgiR_REeXZ8RKBhPFQLyitVek8kDJ3u1JPaCB1MU',
-              token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyNzUiLCJlbWFpbCI6Im1heXhhbmRoMTk5NjE5OTVAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwibmJmIjoxNjkyMDYyOTUwLCJleHAiOjE2OTI2Njc3NTB9.0KKX2eABWnBWqpattTph0ay84r5_CRT18o2_W6aKhKE'
-            };
-      const res = await http.post('/api/phong-thue',valuesRoom,{headers});
-      console.log(res);
-      if(res.status===201){
-          alert('Tạo phòng thành công!');
-          window.location.reload();
-      }
-      console.log(formik.values);
+            const res = await http.post('/api/phong-thue',valuesRoom);
+            if(res.status===201){
+                alert('Tạo phòng thành công!');
+            }
       
     },
     validationSchema: yup.object().shape({
@@ -96,14 +89,6 @@ const AddRoomModalComponent = (props: Props) => {
     
   });
   
-  const handleSelectGender = (event:React.ChangeEvent<HTMLInputElement>)=>{
-    const {value} = event.target;
-    formik.setFieldValue('gender',(value==='true'?true:false));
-  }
-  const handleSelectRole = (event:React.ChangeEvent<HTMLInputElement>)=>{
-    const {value} = event.target;
-    formik.setFieldValue('role',(value ==='ADMIN')?'ADMIN':'USER');
-  }
   useEffect(()=>{
     if (formik) {
       formik.setValues(roomInforFromReducer);
@@ -202,46 +187,37 @@ const AddRoomModalComponent = (props: Props) => {
                 </div>
             </div>
             <div className="w-100 d-flex justify-content-end">
+                    {/* Nút xử lý thêm phòng */}
                     {(roomInforState=='add')&&<button type="submit" className="btn btn-primary me-3">Thêm</button>}
-
+                    {/* nút xử lý chỉnh sửa phòng */}
                     {(roomInforState=='edit')&&<button className="btn btn-primary me-3" onClick={async(event)=>{
                       event.preventDefault()
                       if(window.confirm(`Bạn muốn thay đổi thông tin người dùng ${formik.values.tenPhong}?`)){
-                        const headers = {
-                          tokenCybersoft: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA0NSIsIkhldEhhblN0cmluZyI6IjA4LzEyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTcwMTk5MzYwMDAwMCIsIm5iZiI6MTY3MjA3NDAwMCwiZXhwIjoxNzAyMTQxMjAwfQ.1MKFgiR_REeXZ8RKBhPFQLyitVek8kDJ3u1JPaCB1MU',
-                          token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyNzUiLCJlbWFpbCI6Im1heXhhbmRoMTk5NjE5OTVAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwibmJmIjoxNjkyMDYyOTUwLCJleHAiOjE2OTI2Njc3NTB9.0KKX2eABWnBWqpattTph0ay84r5_CRT18o2_W6aKhKE'
-                        };
                         try{
-                          const res = await http.put(`/api/phong-thue/${formik.values.id}`,formik.values,{headers})
+                          const res = await http.put(`/api/phong-thue/${formik.values.id}`,formik.values)
                           if(res.status == 200||res.status == 201){
                             alert('Chỉnh sửa người dùng thành công');
                             window.location.reload();
                           }
                         }catch(err){
-                          // alert(err)
                         }
                       }
                     }} >Chinh sửa</button>}
-
+                    {/* Nút xử lý xóa phòng */}
                     {(roomInforState =='delete')&&<button className="btn btn-danger me-3" onClick={async(event)=>{
                         event.preventDefault();
-                        if(window.confirm(`Bạn muốn xóa người dùng ${formik.values.tenPhong}!`)){
+                        if(window.confirm(`Bạn muốn xóa phòng ${formik.values.tenPhong}!`)){
                           try{
-                            const headers = {
-                              tokenCybersoft: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA0NSIsIkhldEhhblN0cmluZyI6IjA4LzEyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTcwMTk5MzYwMDAwMCIsIm5iZiI6MTY3MjA3NDAwMCwiZXhwIjoxNzAyMTQxMjAwfQ.1MKFgiR_REeXZ8RKBhPFQLyitVek8kDJ3u1JPaCB1MU',
-                              token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyNzUiLCJlbWFpbCI6Im1heXhhbmRoMTk5NjE5OTVAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwibmJmIjoxNjkyMDYyOTUwLCJleHAiOjE2OTI2Njc3NTB9.0KKX2eABWnBWqpattTph0ay84r5_CRT18o2_W6aKhKE'
-                            };
-                            const res = await http.delete(`/api/phong-thue/${formik.values.id}`,{headers})
+                            const res = await http.delete(`/api/phong-thue/${formik.values.id}`)
                           if(res.status == 200){
-                            alert('Xóa người dùng thành công');
-                            console.log(res);
+                            alert('Xóa phòng thành công');
                             window.location.reload();
                           }
                         }catch(err){
                           alert('Đã có lỗi!')
                         }
                       }
-                    }}>Xóa người dùng</button>}
+                    }}>Xóa phòng</button>}
 
                     {(roomInforState !=='detail')&&<button className="btn btn-secondary" data-bs-dismiss="modal" >Hủy</button>}
                 </div>

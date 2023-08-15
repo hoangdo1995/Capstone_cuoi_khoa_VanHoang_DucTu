@@ -59,17 +59,12 @@ const RoomDetailPage = (props: Props) => {
           id: 0,
           maPhong: id,
           maNguoiBinhLuan: 3238,
-          ngayBinhLuan: new Date(),
+          ngayBinhLuan: dayjs().format('DD/MM/YYYY'),
           noiDung: textareaValue,
           saoBinhLuan: 1
         }
-        const headers = {
-          tokenCybersoft: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlSlMgMzMiLCJIZXRIYW5TdHJpbmciOiIwNi8wMi8yMDI0IiwiSGV0SGFuVGltZSI6IjE3MDcxNzc2MDAwMDAiLCJuYmYiOjE2ODk2OTk2MDAsImV4cCI6MTcwNzMyNTIwMH0.Ti8xtGGllk9j0u36EAuC9HOWsXJ7QELlIx8X5mDHaEE',
-          token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyMzgiLCJlbWFpbCI6ImhvYW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwibmJmIjoxNjkyMDI2NTI1LCJleHAiOjE2OTI2MzEzMjV9.tzL2wuoom4CmxNheSRqSqEvPnSH4CxA4yJB6NO-jCcg'
-        };
         try{
-          const res = await http.post('/api/binh-luan',comment,{headers});
-          console.log(res,'comment');
+          const res = await http.post('/api/binh-luan',comment);
           getComments();
         }
         catch(errr){

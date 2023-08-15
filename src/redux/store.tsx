@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import PositionSearchReducer from "./reducers/PositionSearchReducer";
 import ModalReducer from "./reducers/ModalReducer";
-import DaySelectReducer from "./reducers/DaySelectReducer";
+import UserReducer from "./UserReducer/UserReducer";
 import userInforReducer from "./reducers/userInforReducer";
 import RoomInforReducer from "./reducers/RoomInforReducer";
 
@@ -10,7 +10,8 @@ export const store = configureStore({
         PositionSearchReducer:PositionSearchReducer,
         ModalReducer:ModalReducer,
         UserInforReducer:userInforReducer,
-        RoomInforReducer:RoomInforReducer
+        RoomInforReducer:RoomInforReducer,
+        UserReducer:UserReducer,
     }
 });
 
