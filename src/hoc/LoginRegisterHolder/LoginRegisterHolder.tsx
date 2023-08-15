@@ -10,7 +10,7 @@ const LoginRegisterHolder = (props: Props) => {
         <div className="w-50">
             <img src="" alt="" />
         </div>
-        <div className="w-50 p-5" style={{backdropFilter:"blur(2px)"}}>
+        <div className="w-50 p-5" style={{backdropFilter:"blur(5px)"}}>
             {props.component}
         </div> 
   </div>;
