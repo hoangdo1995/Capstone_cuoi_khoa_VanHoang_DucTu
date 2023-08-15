@@ -79,9 +79,9 @@ http.interceptors.response.use((res) => {
         alert('Không đủ quyền truy cập vào trang này !');
         history.push('/login');
     } 
-    if(err.response?.status===400 || err.response?.status ===404){
-        history.push('/');
-    }
+    // if(err.response?.status===400 || err.response?.status ===404){
+    //     history.push('/');
+    // }
     return Promise.reject(err);
 });
 

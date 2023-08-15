@@ -94,8 +94,8 @@ export default function Register({ }: Props) {
 
             </div>
             <div className="remember-forgot check form-group mt-5">
-              <input name="gender" type='radio' /> Male
-              <input name="gender" type='radio' />Female
+              <input name="gender" type='radio' onChange={frmRegister.handleChange}/> Male
+              <input name="gender" type='radio' onChange={frmRegister.handleChange} />Female
             </div>
           </div>
         </div>
