@@ -4,7 +4,7 @@ import AddAdminModalComonent from "../Components/AddAdminModalComonent/AddAdminM
 import { http, httpNonAuth } from "../../util/config";
 import { UserType } from "../../components/Modal/UtilModel";
 import { userInfo } from "os";
-import { setUserInforReducer } from "../../redux/reducers/userInforReducer";
+import { setUserInforReducer, setUserInforState } from "../../redux/reducers/userInforReducer";
 import { useDispatch } from "react-redux";
 import { DispatchType } from "../../redux/store";
 
@@ -18,6 +18,10 @@ const AdminManagerPage = (props: Props) => {
   const [searchValue,setSearchValue] = useState<string>('');
   const setUserInfor = (userInfo:UserType)=>{
     const action = setUserInforReducer(userInfo);
+    dispatch(action);
+  }
+  const setUserState = (state:string)=>{
+    const action = setUserInforState(state);
     dispatch(action);
   }
   const setPageNumberState=(pageNumber:number)=>{
@@ -52,7 +56,8 @@ const AdminManagerPage = (props: Props) => {
             "avatar": "",
             "gender":true ,
             "role": ""
-          })
+          });
+          setUserState('add');
         }}>Thêm quản trị viên</h3>
         <div className="searchBar">
           <input type="text" onChange={(event)=>setSearchValue(event.target.value)}/>
@@ -87,9 +92,16 @@ const AdminManagerPage = (props: Props) => {
               <td>
                   <button onClick={()=>{
                     setUserInfor(user);
+                    setUserState('detail');
                   }} data-bs-toggle="modal" data-bs-target="#paginationBar">Chi tiết</button>
-                  <button>Chỉnh sửa</button>
-                  <button>Xóa</button>
+                  <button  onClick={()=>{
+                    setUserInfor(user);
+                    setUserState('edit');
+                  }} data-bs-toggle="modal" data-bs-target="#paginationBar">Chỉnh sửa</button>
+                  <button onClick={()=>{
+                    setUserInfor(user);
+                    setUserState('delete');
+                  }} data-bs-toggle="modal" data-bs-target="#paginationBar">Xóa</button>
               </td>
             </tr>
             })}

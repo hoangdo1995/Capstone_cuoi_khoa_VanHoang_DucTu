@@ -51,10 +51,12 @@ httpNonAuth.interceptors.request.use((config: any) => {
 }, err => {
     return Promise.reject(err)
 });
+
 http.interceptors.request.use((config: any) => {
+    config.baseURL = DOMAIN;
     config.headers = { ...config.headers}
-    let token = getStoreJson(USER_LOGIN)?.accessToken;
-    config.headers.Authorization = `Bearer ${token}`;
+    // let token = getStoreJson(USER_LOGIN)?.accessToken;
+    // config.headers.Authorization = `Bearer ${token}`;
     config.headers.tokenCybersoft = TOKEN_CYBERSOFT;
     return config;
 }, err => {
@@ -83,7 +85,7 @@ http.interceptors.response.use((res) => {
     }
     if (err.response?.status === 403) {
         alert('Không đủ quyền truy cập vào trang này !');
-        history.push('/admin/login');
+        // history.push('/admin/login');
     }
     return Promise.reject(err);
 });

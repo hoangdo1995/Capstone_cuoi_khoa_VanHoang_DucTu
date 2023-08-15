@@ -11,7 +11,6 @@ const AdminNavbar = (props: Props) => {
         </div>
         <nav className="nav flex-column navMenu">
             <NavLink className="nav-link" to="user">Quản lý người dùng</NavLink>
-            <NavLink className="nav-link" to="#">Quản lý thông tin vị trí</NavLink>
             <NavLink className="nav-link" to="room">Quản lý thông tin phòng</NavLink>
         </nav>
   </div>)

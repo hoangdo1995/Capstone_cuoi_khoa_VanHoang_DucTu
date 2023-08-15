@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React,{FormEventHandler, useEffect,useState} from "react";
 import { http, httpNonAuth, isTimeInRange } from "../../util/config";
 import { useParams } from "react-router-dom";
 import { BookRoomType, CommentType, LocationType, RoomDetailType } from "../../components/Modal/UtilModel";
@@ -64,17 +64,19 @@ const RoomDetailPage = (props: Props) => {
           saoBinhLuan: 1
         }
         const headers = {
-          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyMzgiLCJlbWFpbCI6ImhvYW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwibmJmIjoxNjkxOTA4NTc4LCJleHAiOjE2OTI1MTMzNzh9.WQjhCjUOsT44-fB3He-JMmIWeMPpvWP031K2RDp_No0',
           tokenCybersoft: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlSlMgMzMiLCJIZXRIYW5TdHJpbmciOiIwNi8wMi8yMDI0IiwiSGV0SGFuVGltZSI6IjE3MDcxNzc2MDAwMDAiLCJuYmYiOjE2ODk2OTk2MDAsImV4cCI6MTcwNzMyNTIwMH0.Ti8xtGGllk9j0u36EAuC9HOWsXJ7QELlIx8X5mDHaEE',
-          Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlSlMgMzMiLCJIZXRIYW5TdHJpbmciOiIwNi8wMi8yMDI0IiwiSGV0SGFuVGltZSI6IjE3MDcxNzc2MDAwMDAiLCJuYmYiOjE2ODk2OTk2MDAsImV4cCI6MTcwNzMyNTIwMH0.Ti8xtGGllk9j0u36EAuC9HOWsXJ7QELlIx8X5mDHaEE'
+          token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyMzgiLCJlbWFpbCI6ImhvYW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwibmJmIjoxNjkyMDI2NTI1LCJleHAiOjE2OTI2MzEzMjV9.tzL2wuoom4CmxNheSRqSqEvPnSH4CxA4yJB6NO-jCcg'
         };
-        const res = await http.post('/api/binh-luan',comment,{headers});
-        console.log(res);
-        
+        try{
+          const res = await http.post('/api/binh-luan',comment,{headers});
+          console.log(res,'comment');
+          getComments();
+        }
+        catch(errr){
+          console.log(errr,'comment error');
+          
+        }        
     }
-    
-
-    
 }
   // hàm kiểm tra phòng đã có người đặt chưa
   const checkRoom = async()=>{
@@ -311,10 +313,10 @@ const RoomDetailPage = (props: Props) => {
             {comments?.map((comment,index)=><CommentItem content={comment}/>)}
           </div>
           <div className="comment-box content">
-            <div className="box">
+            <form className="box">
               <textarea rows={4} id="comment" onChange={handleTextareaChange}/>
-            </div>
-            <button onClick={()=>{comment()}} >Add Comment</button>
+            </form>
+            <button onClick={()=>{comment()}} type="submit">Add Comment</button>
           </div>
         </div>
   </div>;
